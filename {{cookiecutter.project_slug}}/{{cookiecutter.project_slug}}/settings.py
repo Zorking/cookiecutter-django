@@ -3,18 +3,15 @@ Base settings to build other settings files upon.
 """
 
 import environ
-
+#
 ROOT_DIR = (
-    environ.Path(__file__) - 3
-)  # ({{ cookiecutter.project_slug }}/config/settings/settings.py - 3 = {{ cookiecutter.project_slug }}/)
-APPS_DIR = ROOT_DIR.path("{{ cookiecutter.project_slug }}")
+    environ.Path(__file__) - 2
+)  # (test_test/{{cookiecutter.project_slug}}/settings.py - 2 = {{cookiecutter.project_slug}}/)
+APPS_DIR = ROOT_DIR.path("test_test")
 
 env = environ.Env()
 
-READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
-if READ_DOT_ENV_FILE:
-    # OS environment variables take precedence over variables from .env
-    env.read_env(str(ROOT_DIR.path(".env")))
+env.read_env(str(ROOT_DIR.path(".env")))
 
 # GENERAL
 # ------------------------------------------------------------------------------

@@ -2,7 +2,7 @@ import pytest
 from django.conf import settings
 from django.test import RequestFactory
 
-from {{ cookiecutter.project_slug }}.users.views import UserRedirectView, UserUpdateView
+from {{ cookiecutter.project_slug }}.views import UserRedirectView, UserUpdateView
 
 pytestmark = pytest.mark.django_db
 
