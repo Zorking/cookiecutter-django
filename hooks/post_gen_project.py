@@ -280,7 +280,7 @@ def remove_node_dockerfile():
 
 
 def main():
-    debug = "{{ cookiecutter.debug }}".lower() == "y"
+    debug = True
 
     set_flags_in_envs(
         DEBUG_VALUE if debug else generate_random_user(),
@@ -288,22 +288,9 @@ def main():
         debug=debug,
     )
     set_flags_in_settings_files()
-
-    if "{{ cookiecutter.open_source_license }}" == "Not open source":
-        remove_open_source_files()
-    if "{{ cookiecutter.open_source_license}}" != "GPLv3":
-        remove_gplv3_files()
-
-    if "{{ cookiecutter.use_pycharm }}".lower() == "n":
-        remove_pycharm_files()
-
-    if "{{ cookiecutter.use_docker }}".lower() == "y":
-        remove_utility_files()
-    else:
-        remove_docker_files()
-
-    if "{{ cookiecutter.use_heroku }}".lower() == "n":
-        remove_heroku_files()
+    remove_open_source_files()
+    remove_docker_files()
+    remove_heroku_files()
 
     if (
         "{{ cookiecutter.use_docker }}".lower() == "n"
