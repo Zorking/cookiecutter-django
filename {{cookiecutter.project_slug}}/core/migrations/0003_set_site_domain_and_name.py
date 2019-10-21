@@ -9,7 +9,7 @@ from django.db import migrations
 
 def update_site_forward(apps, schema_editor):
     """Set site domain and name."""
-    Site = apps.get_model("sites", "Site")
+    Site = apps.get_model("core", "Site")
     Site.objects.update_or_create(
         id=settings.SITE_ID,
         defaults={
@@ -29,6 +29,6 @@ def update_site_backward(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = [("sites", "0002_alter_domain_unique")]
+    dependencies = [("core", "0002_alter_domain_unique")]
 
     operations = [migrations.RunPython(update_site_forward, update_site_backward)]
